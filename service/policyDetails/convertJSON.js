@@ -17,7 +17,6 @@ module.exports.toJSON = (parser, file, jsonFile) => {
 
             fs.appendFile(jsonFile, `${jsonStr}`, function (err) {
                 if (err) throw err;
-                console.log('append');
             });
         })
 
@@ -29,6 +28,10 @@ module.exports.toJSON = (parser, file, jsonFile) => {
                 if (err) reject(err);
                 resolve(true)
             });
+        })
+
+        convertor.on('error', (err) => {
+                reject(err)
         })
 
     }) 
